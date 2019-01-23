@@ -19,12 +19,22 @@ public class hangman {
         while (inputFile.hasNextLine()) {
             wordList.add(inputFile.nextLine());
         }
-        for (int i = 0 ; i < wordList.size() ; i++) {
-            System.out.println(wordList.get(i));
-        }
+
         Math.random();
-        Random R = new Random(10);
+        Random R = new Random();
         int wordIndex = R.nextInt(wordList.size());
         String correctWord = wordList.get(wordIndex);
+        System.out.println(correctWord);
+
+        System.out.println("Gissa ordet");
+        char[] letters = correctWord.toCharArray();
+        char[] guessedLetters = new char [correctWord.length()];
+        int i;
+        for (i=0; i<guessedLetters.length; i++){
+            guessedLetters[i] = '\u005F';
+        }
+        Scanner letterGuess = new Scanner(System.in);
+
+
     }
 }
