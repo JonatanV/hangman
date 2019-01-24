@@ -24,7 +24,6 @@ public class hangman {
         Random R = new Random();
         int wordIndex = R.nextInt(wordList.size());
         String correctWord = wordList.get(wordIndex);
-        System.out.println(correctWord);
 
         System.out.println("Gissa ordet");
         char[] letters = correctWord.toCharArray();
@@ -33,27 +32,47 @@ public class hangman {
         for (i=0; i<guessedLetters.length; i++){
             guessedLetters[i] = '\u005F';
         }
-        System.out.println(guessedLetters);
-        String[] state = {"  ---| \n" +
-                          "  |  o \n",
-                          "  |    \n",
+        for (i=0; i<guessedLetters.length; i++){
+                System.out.print(" " + guessedLetters[i]);
+        }
+        //        System.out.println(guessedLetters);
+
+        String[] state = {"  ---|  \n" +
+                          "  |  o  \n",
+                          "  | /| \\ \n",
+                          "  | / \\ \n",
+                          " /-\\   \n",
                           ""};
         int lives =state.length;
-        while (lives>0){
+        int score= 0;
+        while (lives>0 && score<correctWord.length()){
         Scanner letterGuess = new Scanner(System.in);
             char guessAschar = letterGuess.nextLine().charAt(0);
             boolean found= false;
-            System.out.println(lives);
 
             for (int n=0;n < letters.length; n++) {
                 if (letters[n] == guessAschar) {
                     guessedLetters[n] = guessAschar;
                     found = true;
-
-                }
-                if (!found)
-                    lives--;
+                    score++;
                 }
             }
+            for (i=0; i<guessedLetters.length; i++) {
+                System.out.print(" " + guessedLetters[i]);
+            }
+
+            if (!found) {
+                lives--;
+            }
+            System.out.println("\n"+lives);
+
+        }
+
+        if(lives<1){
+            System.out.println("Du förlorade försök igen");
+
+        } else {
+            System.out.println("Du Klarade det ordet var "+ correctWord);
+        }
     }
 }
