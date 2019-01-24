@@ -33,8 +33,27 @@ public class hangman {
         for (i=0; i<guessedLetters.length; i++){
             guessedLetters[i] = '\u005F';
         }
+        System.out.println(guessedLetters);
+        String[] state = {"  ---| \n" +
+                          "  |  o \n",
+                          "  |    \n",
+                          ""};
+        int lives =state.length;
+        while (lives>0){
         Scanner letterGuess = new Scanner(System.in);
+            char guessAschar = letterGuess.nextLine().charAt(0);
+            boolean found= false;
+            System.out.println(lives);
 
+            for (int n=0;n < letters.length; n++) {
+                if (letters[n] == guessAschar) {
+                    guessedLetters[n] = guessAschar;
+                    found = true;
 
+                }
+                if (!found)
+                    lives--;
+                }
+            }
     }
 }
